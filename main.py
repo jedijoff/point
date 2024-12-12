@@ -28,7 +28,24 @@ class Point:
         return math.hypot(x_1 - x_2, y_1 - y_2)
 
 
-point1 = Point(0, 0)
-point2 = Point(1, 1)
-print(point1.distance_from_point(point2))
-print(point2.distance_from_xy(2, 0))
+class Triangle(Point):
+
+    def __init__(self, vertice1, vertice2, vertice3):
+        Point.__init__(self)
+        self.__x1 = vertice1.getx()
+        self.__y1 = vertice1.gety()
+        self.__x2 = vertice2.getx()
+        self.__y2 = vertice2.gety()
+        self.__x3 = vertice3.getx()
+        self.__y3 = vertice3.gety()
+        self.__len1 = math.hypot(self.__x1 - self.__x2, self.__y1 - self.__y2)
+        self.__len2 = math.hypot(self.__x2 - self.__x3, self.__y2 - self.__y3)
+        self.__len3 = math.hypot(self.__x3 - self.__x1, self.__y3 - self.__y1)
+
+
+    def perimeter(self):
+        return self.__len1 + self.__len2 + self.__len3
+
+
+triangle = Triangle(Point(0, 0), Point(1, 0), Point(0, 1))
+print(triangle.perimeter())
